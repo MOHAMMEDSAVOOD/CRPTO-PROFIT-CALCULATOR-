@@ -1,0 +1,155 @@
+/* Main styles for the Trading Calculator Pro application */
+
+/* Global animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Transitions */
+.transition-all {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects */
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Card styles */
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden transition-all;
+}
+
+.card-hover {
+  @apply hover:shadow-lg transition-all duration-300 hover-lift;
+}
+
+/* Button styles */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-indigo-500;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 focus:ring-gray-500;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600;
+}
+
+.bg-gradient-secondary {
+  @apply bg-gradient-to-r from-cyan-500 to-blue-500;
+}
+
+.bg-gradient-success {
+  @apply bg-gradient-to-r from-green-500 to-emerald-500;
+}
+
+/* Dashboard specific */
+.dashboard-card {
+  @apply card card-hover p-6 animate-fade-in;
+}
+
+.dashboard-stats {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6;
+}
+
+.stat-card {
+  @apply dashboard-card flex flex-col;
+}
+
+.chart-container {
+  @apply h-80 p-6 card animate-fade-in;
+}
+
+/* Skeleton loader animation */
+.skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 rounded overflow-hidden relative;
+}
+
+.skeleton::after {
+  content: "";
+  @apply absolute top-0 left-0 right-0 bottom-0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* Navigation animations */
+.nav-item {
+  @apply transition-all;
+}
+
+.nav-item.active {
+  @apply transform scale-105;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .dashboard-stats {
+    @apply grid-cols-1 gap-4;
+  }
+  
+  .chart-container {
+    @apply h-60;
+  }
+} 
